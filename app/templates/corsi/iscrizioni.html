@@ -1,0 +1,29 @@
+{% extends 'corsi/base.html' %}
+
+{% block content %}
+
+    {% for corso in corsi%}
+
+      <center>
+<div class="articolo_centrale">
+
+      <br>
+      <h2 class="titolo">{{ corso.titolo|safe }}</h2>
+      <p>{{corso.descrizione}}</p>
+      <p>n di iscritti: {{corso.max_iscritti}}
+
+
+      <form method="POST" class="post-form">
+        {{ form }}
+        {% csrf_token %}
+        <input type="number" name="quantity" value="{{corso.max_iscritti}}">
+
+      <input type="submit" value="Iscriviti" />
+    </form>
+
+	</center>
+
+
+{% endfor %}
+
+{% endblock %}

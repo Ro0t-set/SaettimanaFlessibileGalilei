@@ -1,0 +1,88 @@
+body{
+background-color: whitesmoke;
+color: black;
+}
+
+
+.content {
+  position: relative;
+  max-width: 6000px;
+  margin: 0 auto;
+  padding: 5% 0;
+  margin-left: 5%;
+
+  }
+
+.login{
+    
+  position: relative;
+  max-width: 600px;
+  margin:  auto;
+  padding: 15% 0;
+ 
+}
+
+.errorlist{
+    color: red;
+}
+
+#id_Descrizione{
+    font-size: 20px;
+    background-color: white;
+    opacity: 0.3;
+    border-color: black;
+    color: black;
+    height: 100px;
+ 
+    line-height: 1.3333333;
+    border-radius: 4px;
+    box-shadow: none;
+    margin-top: 20px;
+}
+
+input{
+
+    font-size: 24px;
+    background-color: white;
+    opacity: 0.3;
+    border-color: black;
+    color: black;
+    padding: 15px 46px;
+ 
+    line-height: 1.3333333;
+    border-radius: 4px;
+    box-shadow: none;
+    margin-top: 20px;
+
+
+}
+
+
+form input:hover {
+
+opacity: 0.4;
+transition: .opacity .3s ease;
+}
+
+
+button{
+    font-size: 17px;
+    background-color: black;
+    opacity: 0.5;
+    border-color: white;
+    color: black;
+    padding: 3px 2px;
+ 
+    line-height: 1.3333333;
+    border-radius: 4px;
+    box-shadow: none;
+    margin-top: 30px;
+}
+
+form button:hover {
+opacity: 0.4;
+transition: .opacity .3s ease;
+}
+
+
+p{color: black;}

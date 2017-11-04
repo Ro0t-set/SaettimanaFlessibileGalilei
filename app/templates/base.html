@@ -1,0 +1,17 @@
+
+{% load staticfiles %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/login.css'%}">
+
+</head> 
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h1>{% block head %}{% endblock %}</h1>
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

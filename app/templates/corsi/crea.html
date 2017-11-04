@@ -1,0 +1,15 @@
+{% extends 'corsi/base.html' %}
+
+{% block content %}
+    <h1>Crea Corsi</h1>
+
+
+            <form method="POST" class="post-form">
+              {% csrf_token %}
+              {{ form}}
+              <br>
+              {{formset}}<br>
+
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

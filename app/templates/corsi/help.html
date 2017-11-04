@@ -1,0 +1,14 @@
+{% extends 'corsi/base.html' %}
+<html>
+{% block content %}
+<body>
+<p>Scrivi il tuo problema</p>
+
+<form method="POST" class="mail">{% csrf_token %}
+{{ form.testo }}
+<button type="submit" class="save btn btn-default">invia</button>
+
+</form>
+</body>
+</html>
+{% endblock %}
