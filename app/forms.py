@@ -13,7 +13,7 @@ from .models import Corso, Iscrizione
 class CreaCorsi(forms.ModelForm):
     class Meta:
         model = Corso
-        fields = ['titolo', 'autori', 'descrizione','classi_autori','aule', 'progressivo','lunedi1','lunedi2','lunedi3','martedi1','martedi2','martedi3','mercoledi1','mercoledi2','mercoledi3' ]
+        fields = ['titolo', 'studenti_referenti', 'classi_autori', 'descrizione','aule', 'progressivo','lunedi1','lunedi2','lunedi3','martedi1','martedi2','martedi3','mercoledi1','mercoledi2','mercoledi3' ]
 
 
 

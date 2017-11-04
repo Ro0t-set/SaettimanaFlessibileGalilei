@@ -16,7 +16,7 @@ class Aula(models.Model):
 
 class Corso(models.Model):
     titolo = models.CharField(max_length=100)
-    autori= models.CharField(max_length=100)
+    studenti_referenti= models.CharField(max_length=100)
     descrizione= models.TextField(blank=True)
     classi_autori = models.CharField(max_length=10, default="")
     aule = models.ForeignKey('Aula')

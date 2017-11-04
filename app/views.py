@@ -81,17 +81,18 @@ def privata(request):
 
 
 @login_required
-def iscrizioni(request):
+def iscrizioni(request, id):
 
 
     corsi = request.GET.get("a")
     if corsi:
-        corsi = Corso.objects.filter(titolo__exact= corsi)#.filter(progressivo=True)
-        numero = Corso.objects.all()
+        corsi = Corso.objects.filter(id= corsi)
+        corsi = get_object_or_404(iscrizioni, id=id)
+
 
 
         if request.method == 'POST':
-            form = IscrizioneForm(request.POST, request.FILES, )
+            form = IscrizioneForm(request.POST, corsi=corsi )
             if form.is_valid():
                 iscrizione = form.save(commit=False)
                 iscrizione.user = request.user
