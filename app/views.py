@@ -77,33 +77,49 @@ def privata(request):
 
     return render(request, 'corsi/privata.html', {'iscrizioni':iscrizioni})
 
-
-
-
 @login_required
-def iscrizioni(request, id):
 
-
+def edit_iscrizioni(request):
     corsi = request.GET.get("a")
     if corsi:
         corsi = Corso.objects.filter(id= corsi)
-        corsi = get_object_or_404(iscrizioni, id=id)
+
+    if request == "POST":
+        form= IscrizioneForm(request.POST)
+        if form.is_valid():
+            iscrizioni = form.save(commit= False)
+            iscrizioni.author= request.user
+            iscrizioni.save()
+            return redirect('privata')
+    else:
+        form= IscrizioneForm()
+    return render(request, 'corsi/edit.html', {'form':form, 'corsi':corsi})
 
 
-
-        if request.method == 'POST':
-            form = IscrizioneForm(request.POST, corsi=corsi )
-            if form.is_valid():
-                iscrizione = form.save(commit=False)
-                iscrizione.user = request.user
-                iscrizione.published_date = timezone.now()
-                iscrizione.save()
-                return redirect('home')
-
-
-        else:
-            form = IscrizioneForm()
-    return render(request, 'corsi/iscrizioni.html', {'corsi' : corsi, 'form':form })
+# @login_required
+# def iscrizioni(request, id):
+#
+#
+#     corsi = request.GET.get("a")
+#     if corsi:
+#         corsi = Corso.objects.filter(id= corsi)
+#         corsi = get_object_or_404(iscrizioni, id=id)
+#
+#
+#
+#         if request.method == 'POST':
+#             form = IscrizioneForm(request.POST, corsi=corsi )
+#             if form.is_valid():
+#                 iscrizione = form.save(commit=False)
+#                 iscrizione.user = request.user
+#                 iscrizione.published_date = timezone.now()
+#                 iscrizione.save()
+#                 return redirect('home')
+#
+#
+#         else:
+#             form = IscrizioneForm()
+#     return render(request, 'corsi/iscrizioni.html', {'corsi' : corsi, 'form':form })
 
 @login_required
 def filtro_fasce(request):

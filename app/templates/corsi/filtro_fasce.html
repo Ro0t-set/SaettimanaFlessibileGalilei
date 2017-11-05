@@ -27,7 +27,9 @@
             {%if corso.progressivo == True%} <p>progressivo</p>
             {%elif corso.progressivo == False%}<p>singolo</p>
             {%endif%}
-            <a href="/iscrizioni/?a={{corso.id}}">vedi piu</a>
+            <a href="/edit/?a={{corso.id}}">vedi piu</a>
+            <a href="{%url 'edit_iscrizioni'%}">vedi piu 2</a>
+            <button type="button" href="{%url 'edit_iscrizioni'%}">Edit</button>
 
 
 

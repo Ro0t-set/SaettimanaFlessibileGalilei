@@ -21,7 +21,7 @@ class CreaCorsi(forms.ModelForm):
 class IscrizioneForm(forms.ModelForm):
     class Meta:
         model = Iscrizione
-        fields = []
+        fields = ['corso1', 'corso2', 'corso3', 'corso4', 'corso5', 'corso6', 'corso7', 'corso8', 'corso9']
 
 
 class Mail(forms.Form):
