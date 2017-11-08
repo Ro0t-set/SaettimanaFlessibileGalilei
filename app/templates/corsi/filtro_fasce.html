@@ -10,32 +10,25 @@
     <p>{{ ripetiziones }} </p>
 
     {% for corso in corsi%}
-<div class="well">
-
-    <div class="corso">
-
-
-            <div class="date">
-                {{ corso.published_date }}
-
-
-            </div>
-            <h3><a href="">{{ corso.titolo }}</a></h3>
-            <p>{{ corso.descrizione }}</p>
-            <h10>{{ corso.author }}</h10>
-            <p>{{corso.id}} </p>
-            {%if corso.progressivo == True%} <p>progressivo</p>
-            {%elif corso.progressivo == False%}<p>singolo</p>
-            {%endif%}
-            <a href="/edit/?a={{corso.id}}">vedi piu</a>
-            <a href="{%url 'edit_iscrizioni'%}">vedi piu 2</a>
-            <button type="button" href="{%url 'edit_iscrizioni'%}">Edit</button>
 
 
 
-
-        </div>
+        <div class="card">
+  <div class="card-header">
+  corso
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">{{ corso.titolo }}</h4>
+    <p>{{ corso.descrizione }}</p>
+  <h10>{{ corso.studenti_referenti }}</h10>
+  <p>{{corso.id}} </p>
+  {%if corso.progressivo == True%} <p>progressivo</p>
+  {%elif corso.progressivo == False%}<p>singolo</p>
+  {%endif%}
+    <a href="{%url 'edit_iscrizioni' corso.id%}" class="btn btn-primary">piu dettagli</a>
+  </div>
 </div>
+<br>
     {% endfor %}
 
 {% endblock content %}

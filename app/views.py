@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Corso, Iscrizione
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from .forms import CreaCorsi, IscrizioneForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -12,6 +12,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_protect
 import operator
+from openpyxl import Workbook
+from openpyxl.compat import range
+from openpyxl.utils import get_column_letter
+import datetime
 from django.db.models import Q
 from django.forms import formset_factory
 from django.shortcuts import render_to_response
@@ -44,6 +48,8 @@ def crea(request):
 
 
 
+
+
     if request.method == "POST":
 
         form = CreaCorsi(request.POST)
@@ -54,6 +60,23 @@ def crea(request):
             corso.author = request.user
             corso.published_date = timezone.now()
             corso.save()
+
+            # corsixl = Workbook()
+            # dest_filename = 'tabelle/corsi.xlsx'
+            # wcorsi= corsixl.active
+            # wcorsi = corsixl.create_sheet(title="corsi")
+            # colonnaA="A"
+            # rigaecolonna= colonnaA[(corso.id+1)]
+            # print rigaecolonna
+            #
+            # wcorsi['A1'] = "titolo"
+            # wcorsi['B1'] = "descrizione"
+            # wcorsi['C1'] = "autori"
+            # wcorsi['D1'] = "classe autori"
+            # wcorsi[rigaecolonna] = corso.titolo
+
+
+            #corsixl.save(filename = 'tabelle/corsi.xlsx')
             return redirect('home')
 
     else:
@@ -79,20 +102,27 @@ def privata(request):
 
 @login_required
 
-def edit_iscrizioni(request):
-    corsi = request.GET.get("a")
-    if corsi:
-        corsi = Corso.objects.filter(id= corsi)
+def edit_iscrizioni(request, corso_id):
+    corsi = Corso.objects.filter( pk=corso_id)
+    tabella= Iscrizione.objects.filter(user=request.user)
 
-    if request == "POST":
-        form= IscrizioneForm(request.POST)
+
+    iscrizione=get_object_or_404(Iscrizione, pk=tabella)
+
+
+    if request.method == "POST":
+        form = IscrizioneForm(request.POST, instance= iscrizione)
         if form.is_valid():
-            iscrizioni = form.save(commit= False)
-            iscrizioni.author= request.user
-            iscrizioni.save()
-            return redirect('privata')
+            if Corso.lunedi1:
+                iscrizione = form.save(commit=False)
+                iscrizione.user = request.user
+                iscrizione.published_date = timezone.now()
+                iscrizione.corso1_id= corso_id
+                iscrizione.save()
+        return redirect('privata')
+
     else:
-        form= IscrizioneForm()
+        form = IscrizioneForm(instance= iscrizione)
     return render(request, 'corsi/edit.html', {'form':form, 'corsi':corsi})
 
 
