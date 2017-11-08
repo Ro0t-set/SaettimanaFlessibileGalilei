@@ -24,15 +24,15 @@ class Corso(models.Model):
 
     progressivo= models.BooleanField(default=False)
 
-    lunedi1= models.BooleanField(default=False)
-    lunedi2= models.BooleanField(default=False)
-    lunedi3= models.BooleanField(default=False)
-    martedi1= models.BooleanField(default=False)
-    martedi2= models.BooleanField(default=False)
-    martedi3= models.BooleanField(default=False)
-    mercoledi1= models.BooleanField(default=False)
-    mercoledi2= models.BooleanField(default=False)
-    mercoledi3= models.BooleanField(default=False)
+    f1= models.BooleanField(default=False)
+    f2= models.BooleanField(default=False)
+    f3= models.BooleanField(default=False)
+    f4= models.BooleanField(default=False)
+    f5= models.BooleanField(default=False)
+    f6= models.BooleanField(default=False)
+    f7= models.BooleanField(default=False)
+    f8= models.BooleanField(default=False)
+    f9= models.BooleanField(default=False)
 
 
 

@@ -104,21 +104,23 @@ def privata(request):
 
 def edit_iscrizioni(request, corso_id):
     corsi = Corso.objects.filter( pk=corso_id)
+    fasca = Corso.objects.get( pk=corso_id)
     tabella= Iscrizione.objects.filter(user=request.user)
-
-
     iscrizione=get_object_or_404(Iscrizione, pk=tabella)
-
 
     if request.method == "POST":
         form = IscrizioneForm(request.POST, instance= iscrizione)
         if form.is_valid():
-            if Corso.lunedi1:
-                iscrizione = form.save(commit=False)
-                iscrizione.user = request.user
-                iscrizione.published_date = timezone.now()
+            iscrizione = form.save(commit=False)
+            iscrizione.user = request.user
+            iscrizione.published_date = timezone.now()
+            if fasca.f1:
                 iscrizione.corso1_id= corso_id
-                iscrizione.save()
+            if fasca.f2:
+                iscrizione.corso2_id= corso_id
+            form.save()
+
+
         return redirect('privata')
 
     else:
@@ -155,21 +157,21 @@ def edit_iscrizioni(request, corso_id):
 def filtro_fasce(request):
     corsi=request.GET.get("f")
     if corsi == 'f1':
-        corsi = Corso.objects.filter(lunedi1=True)
+        corsi = Corso.objects.filter(f1=True)
     if corsi == 'f2':
-        corsi = Corso.objects.filter(lunedi2=True)
+        corsi = Corso.objects.filter(f2=True)
     if corsi == 'f3':
-        corsi = Corso.objects.filter(lunedi3=True)
+        corsi = Corso.objects.filter(f3=True)
     if corsi == 'f4':
-        corsi = Corso.objects.filter(martedi1=True)
+        corsi = Corso.objects.filter(f4=True)
     if corsi == 'f5':
-        corsi = Corso.objects.filter(martedi2=True)
+        corsi = Corso.objects.filter(f5=True)
     if corsi == 'f6':
-        corsi = Corso.objects.filter(martedi3=True)
+        corsi = Corso.objects.filter(f6=True)
     if corsi == 'f7':
-        corsi = Corso.objects.filter(mercoledi1=True)
+        corsi = Corso.objects.filter(f7=True)
     if corsi == 'f8':
-        corsi = Corso.objects.filter(mercoledi2=True)
+        corsi = Corso.objects.filter(f8=True)
     if corsi == 'f9':
-        corsi = Corso.objects.filter(mercoledi3=True)
+        corsi = Corso.objects.filter(f9=True)
     return render(request, 'corsi/filtro_fasce.html', {'corsi' : corsi})
