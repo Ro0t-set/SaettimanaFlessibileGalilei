@@ -11,7 +11,9 @@
 
     {% for corso in corsi%}
 
-
+{%if corso.error%}
+<i class="material-icons">remove</i>
+{%endif%}
 
         <div class="card">
   <div class="card-header">

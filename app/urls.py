@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^crea/$', views.crea, name='crea'),
 #    url(r'^iscrizioni/$', views.iscrizioni, name='iscrizioni'),
     url(r'^privata/$', views.privata, name='privata'),
+    url(r'^login/$', login, name='login'),
     url(r'^filtro_fasce/$', views.filtro_fasce, name='filtro_fasce'),
     url(r'^(?P<corso_id>[0-9]+)/edit/$', views.edit_iscrizioni, name='edit_iscrizioni'),
 

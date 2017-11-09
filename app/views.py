@@ -92,7 +92,7 @@ def home (request):
 
 
 
-@login_required
+@login_required(login_url='/login/')
 def privata(request):
 
     iscrizioni= Iscrizione.objects.filter(user=request.user)
@@ -100,8 +100,8 @@ def privata(request):
 
     return render(request, 'corsi/privata.html', {'iscrizioni':iscrizioni})
 
-@login_required
 
+@login_required(login_url='/login/')
 def edit_iscrizioni(request, corso_id):
     corsi = Corso.objects.filter( pk=corso_id)
     fasca = Corso.objects.get( pk=corso_id)
@@ -114,10 +114,25 @@ def edit_iscrizioni(request, corso_id):
             iscrizione = form.save(commit=False)
             iscrizione.user = request.user
             iscrizione.published_date = timezone.now()
-            if fasca.f1:
-                iscrizione.corso1_id= corso_id
-            if fasca.f2:
-                iscrizione.corso2_id= corso_id
+            if fasca.progressivo:
+                if fasca.f1:
+                    iscrizione.corso1_id= corso_id
+                if fasca.f2:
+                    iscrizione.corso2_id= corso_id
+                if fasca.f3:
+                    iscrizione.corso3_id= corso_id
+                if fasca.f4:
+                    iscrizione.corso4_id= corso_id
+                if fasca.f5:
+                    iscrizione.corso5_id= corso_id
+                if fasca.f6:
+                    iscrizione.corso6_id= corso_id
+                if fasca.f7:
+                    iscrizione.corso7_id= corso_id
+                if fasca.f8:
+                    iscrizione.corso8_id= corso_id
+                if fasca.f9:
+                    iscrizione.corso9_id= corso_id
             form.save()
 
 
@@ -153,7 +168,7 @@ def edit_iscrizioni(request, corso_id):
 #             form = IscrizioneForm()
 #     return render(request, 'corsi/iscrizioni.html', {'corsi' : corsi, 'form':form })
 
-@login_required
+@login_required(login_url='/login/')
 def filtro_fasce(request):
     corsi=request.GET.get("f")
     if corsi == 'f1':

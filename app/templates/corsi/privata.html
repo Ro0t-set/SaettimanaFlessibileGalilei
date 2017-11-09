@@ -6,18 +6,18 @@
     {% for iscrizione in iscrizioni%}
 
     <div class="panel panel-default">
-      <!-- Default panel contents -->
+      
       <div class="panel-heading">
 <p><b>{{user}}</b></p>
   </div>
 
       <table class="table">
         <thead>
-           <tr><th>lunedì</th><th>martedì</th> <th>mercoledì</th></tr>
-       <tr><td>{{iscrizione.corso1}} <a href="/filtro_fasce/?f=f1">modifica<a/></td><td>{{iscrizione.corso3}} <a href="/filtro_fasce/?f=f4">modifica<a/></td><td>{{iscrizione.corso6}} <a href="/filtro_fasce/?f=f7">modifica<a/></td></tr>
-       <tr><td>{{iscrizione.corso2}} <a href="/filtro_fasce/?f=f2">modifica<a/></td><td>{{iscrizione.corso4}} <a href="/filtro_fasce/?f=f5">modifica<a/></td><td>{{iscrizione.corso7}} <a href="/filtro_fasce/?f=f8">modifica<a/></td></tr>
-       <tr><td>{{iscrizione.corso3}} <a href="/filtro_fasce/?f=f3">modifica<a/></td><td>{{iscrizione.corso5}} <a href="/filtro_fasce/?f=f6">modifica<a/></td><td>{{iscrizione.corso8}} <a href="/filtro_fasce/?f=f9">modifica<a/></td></tr>
-       </thead>
+           <tr><th>Martedì</th><th>Martedì</th> <th>Mercoledì</th><th>Venerdì</th></tr>
+       <tr><td>Lezione </td><td>Lezione </td><td>Lezione </td></td><td>{{iscrizione.corso7}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td></tr>
+       <tr><td>{{iscrizione.corso1}} <a href="/filtro_fasce/?f=f2"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso3}} <a href="/filtro_fasce/?f=f5"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso5}} <a href="/filtro_fasce/?f=f8"><i class="material-icons">mode_edit</i><a/></td></td><td>{{iscrizione.corso8}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td></tr>
+       <tr><td>{{iscrizione.corso2}} <a href="/filtro_fasce/?f=f3"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso4}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso6}} <a href="/filtro_fasce/?f=f9"><i class="material-icons">mode_edit</i><a/></td></td><td>{{iscrizione.corso9}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td></tr>
+
       </table>
     </div>
 

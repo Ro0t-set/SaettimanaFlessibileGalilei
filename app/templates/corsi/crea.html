@@ -2,14 +2,15 @@
 
 {% block content %}
     <h1>Crea Corsi</h1>
-
-
-            <form method="POST" class="post-form">
+<form method="POST" >
+<div class="form-row">
+<div class="form-group col-md-6">
               {% csrf_token %}
               {{ form}}
-              <br>
-              {{formset}}<br>
+
 
         <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+</div>
+  </div>
+  </form>
 {% endblock %}
