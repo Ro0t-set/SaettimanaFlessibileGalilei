@@ -11,14 +11,23 @@
 <p><b>{{user}}</b></p>
   </div>
 
-      <table class="table">
+      <table class="table table-striped">
         <thead>
-           <tr><th>Martedì</th><th>Mercoledì</th> <th>Giovedì</th><th>Venerdì</th></tr>
-       <tr><td>Lezione </td><td>Lezione </td><td>Lezione </td></td><td>{{iscrizione.corso7}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td></tr>
-       <tr><td>{{iscrizione.corso1}} <a href="/filtro_fasce/?f=f2"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso3}} <a href="/filtro_fasce/?f=f5"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso5}} <a href="/filtro_fasce/?f=f8"><i class="material-icons">mode_edit</i><a/></td></td><td>{{iscrizione.corso8}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td></tr>
-       <tr><td>{{iscrizione.corso2}} <a href="/filtro_fasce/?f=f3"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso4}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso6}} <a href="/filtro_fasce/?f=f9"><i class="material-icons">mode_edit</i><a/></td></td><td>{{iscrizione.corso9}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td></tr>
+          <tr>
+  <th scope="col">#</th>
+  <th scope="col">Martedì</th>
+  <th scope="col">Mercoledì</th>
+  <th scope="col">Giovedì</th>
+  <th scope="col">Venerdì</th>
+</tr>
 
-      </table>
+</thead>
+
+  <tr> <th scope="row">1.</th> <td>Lezione </td><td>Lezione </td><td>Lezione </td></td><td>Lezione </tr>
+  <tr> <th scope="row">2.</th> <td>{{iscrizione.corso1}} <a href="/filtro_fasce/?f=f1"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso3}} <a href="/filtro_fasce/?f=f3"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso5}} <a href="/filtro_fasce/?f=f5"><i class="material-icons">mode_edit</i><a/></td></td><td>{{iscrizione.corso7}} <a href="/filtro_fasce/?f=f7"><i class="material-icons">mode_edit</i><a/></td></tr>
+  <tr> <th scope="row">3.</th> <td>{{iscrizione.corso2}} <a href="/filtro_fasce/?f=f2"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso4}} <a href="/filtro_fasce/?f=f4"><i class="material-icons">mode_edit</i><a/></td><td>{{iscrizione.corso6}} <a href="/filtro_fasce/?f=f6"><i class="material-icons">mode_edit</i><a/></td></td><td>{{iscrizione.corso8}} <a href="/filtro_fasce/?f=f8"><i class="material-icons">mode_edit</i><a/></td></tr>
+
+  </table>
     </div>
 
 {%endfor%}

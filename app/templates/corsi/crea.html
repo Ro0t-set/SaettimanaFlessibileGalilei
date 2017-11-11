@@ -6,7 +6,7 @@
 <div class="form-row">
 <div class="form-group col-md-6">
               {% csrf_token %}
-              {{ form}}
+              {{ form.as_p}}
 
 
         <button type="submit" class="save btn btn-default">Save</button>

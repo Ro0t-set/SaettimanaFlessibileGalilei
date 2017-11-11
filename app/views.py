@@ -60,6 +60,7 @@ def crea(request):
             corso.author = request.user
             corso.published_date = timezone.now()
             corso.save()
+
             subject, from_email, to = 'corsi', 'settimanaflessibile@gmail.com', 'settimanaflessibile@gmail.com'
             text_content = '456'
             html_content =  form.cleaned_data['titolo']
@@ -68,22 +69,6 @@ def crea(request):
             msg.attach_alternative(html_content, "text/html")
             msg.send()
 
-            # corsixl = Workbook()
-            # dest_filename = 'tabelle/corsi.xlsx'
-            # wcorsi= corsixl.active
-            # wcorsi = corsixl.create_sheet(title="corsi")
-            # colonnaA="A"
-            # rigaecolonna= colonnaA[(corso.id+1)]
-            # print rigaecolonna
-            #
-            # wcorsi['A1'] = "titolo"
-            # wcorsi['B1'] = "descrizione"
-            # wcorsi['C1'] = "autori"
-            # wcorsi['D1'] = "classe autori"
-            # wcorsi[rigaecolonna] = corso.titolo
-
-
-            #corsixl.save(filename = 'tabelle/corsi.xlsx')
             return redirect('home')
 
     else:
@@ -121,40 +106,63 @@ def edit_iscrizioni(request, corso_id):
     tabella= Iscrizione.objects.filter(user=request.user)
     iscrizione=get_object_or_404(Iscrizione, pk=tabella)
 
+
+
+
     if request.method == "POST":
         form = IscrizioneForm(request.POST, instance= iscrizione)
+
+
         if form.is_valid():
             iscrizione = form.save(commit=False)
             iscrizione.user = request.user
             iscrizione.published_date = timezone.now()
             if fasca.progressivo:
-
                 if fasca.f1:
                     iscrizione.corso1 = fasca
                 if fasca.f2:
                     iscrizione.corso2 = fasca
-
                 if fasca.f3:
-                    iscrizione.corso3_id= fasca
+                    iscrizione.corso3= fasca
                 if fasca.f4:
-                    iscrizione.corso4_id= fasca
+                    iscrizione.corso4= fasca
                 if fasca.f5:
-                    iscrizione.corso5_id= fasca
+                    iscrizione.corso5= fasca
                 if fasca.f6:
-                    iscrizione.corso6_id= fasca
+                    iscrizione.corso6= fasca
                 if fasca.f7:
-                    iscrizione.corso7_id= fasca
+                    iscrizione.corso7= fasca
                 if fasca.f8:
-                    iscrizione.corso8_id= fasca
-                if fasca.f9:
-                    iscrizione.corso9_id= fasca
-            iscrizione.save()
+                    iscrizione.corso8= fasca
+
+            else:
+                if fasca.f1:
+                    iscrizione.corso1_id = corso_id
+                elif fasca.f2:
+                    iscrizione.corso2_id = corso_id
+
+                elif fasca.f3:
+                    iscrizione.corso3_id= corso_id
+                elif fasca.f4:
+                    iscrizione.corso4_id= corso_id
+                elif fasca.f5:
+                    iscrizione.corso5_id= corso_id
+                elif fasca.f6:
+                    iscrizione.corso6_id= corso_id
+                elif fasca.f7:
+                    iscrizione.corso7_id= corso_id
+                elif fasca.f8:
+                    iscrizione.corso8_id= corso_id
+
+
+        iscrizione.save()
 
 
         return redirect('privata')
 
     else:
         form = IscrizioneForm(instance= iscrizione)
+
     return render(request, 'corsi/edit.html', {'form':form, 'corsi':corsi})
 
 
@@ -188,6 +196,7 @@ def filtro_fasce(request):
     corsi=request.GET.get("f")
     if corsi == 'f1':
         corsi = Corso.objects.filter(f1=True)
+
     if corsi == 'f2':
         corsi = Corso.objects.filter(f2=True)
     if corsi == 'f3':
@@ -202,8 +211,7 @@ def filtro_fasce(request):
         corsi = Corso.objects.filter(f7=True)
     if corsi == 'f8':
         corsi = Corso.objects.filter(f8=True)
-    if corsi == 'f9':
-        corsi = Corso.objects.filter(f9=True)
+
     return render(request, 'corsi/filtro_fasce.html', {'corsi' : corsi})
 
 def help(request):

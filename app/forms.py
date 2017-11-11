@@ -13,7 +13,7 @@ from .models import Corso, Iscrizione
 class CreaCorsi(forms.ModelForm):
     class Meta:
         model = Corso
-        fields = ['titolo', 'studenti_referenti', 'classi_autori', 'descrizione','aule', 'progressivo','f1','f2','f3','f4','f5','f6','f7','f8','f9' ]
+        fields = ['titolo', 'studenti_referenti', 'classi_autori', 'descrizione','aule', 'progressivo','f1','f2','f3','f4','f5','f6','f7','f8' ]
 
 
 
@@ -21,9 +21,9 @@ class CreaCorsi(forms.ModelForm):
 class IscrizioneForm(forms.ModelForm):
     class Meta:
         model = Iscrizione
-        fields = ['corso1', 'corso2', 'corso3', 'corso4', 'corso5', 'corso6', 'corso7', 'corso8', 'corso9']
-
+        fields = ['corso1', 'corso2', 'corso3', 'corso4', 'corso5', 'corso6', 'corso7', 'corso8']
+        
 
 class Mail(forms.Form):
-    testo=forms.CharField(label='testo', max_length="1000")
-    mail= forms.EmailField(label='mail', max_length="100")
+    testo=forms.CharField(widget=forms.TextInput(attrs={'form-control': 'form-control'}))
+    mail= forms.EmailField(widget=forms.TextInput(attrs={'form-control': 'form-control'}))

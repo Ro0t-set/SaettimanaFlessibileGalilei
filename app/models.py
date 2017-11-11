@@ -32,7 +32,7 @@ class Corso(models.Model):
     f6= models.BooleanField(default=False)
     f7= models.BooleanField(default=False)
     f8= models.BooleanField(default=False)
-    f9= models.BooleanField(default=False)
+
 
 
 
@@ -64,7 +64,7 @@ class Iscrizione(models.Model):
     corso6= models.ForeignKey('Corso', blank=True, null=True, related_name="corso6")
     corso7= models.ForeignKey('Corso', blank=True, null=True, related_name="corso7")
     corso8= models.ForeignKey('Corso', blank=True, null=True, related_name="corso8")
-    corso9= models.ForeignKey('Corso', blank=True, null=True, related_name="corso9")
+
 
 
 
