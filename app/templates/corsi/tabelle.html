@@ -1,0 +1,49 @@
+{% extends 'corsi/base.html' %}
+
+{% block content %}
+
+<form method="GET" action=""> {{ form.q }}<input type="submit" value="Search"> <a href="/">indietro</a>
+  <p>numero corsi tot: {{corsi.count}}</p>
+</form>
+
+
+    <p>{{ ripetiziones }} </p>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titolo</th>
+          <th scope="col">Autori</th>
+          <th scope="col">Sezione Autori</th>
+          <th scope="col">Classe Richiesta</th>
+          <th scope="col">Progressivo?</th>
+          <th scope="col">f1</th>
+          <th scope="col">f2</th>
+          <th scope="col">f3</th>
+          <th scope="col">f4</th>
+          <th scope="col">f5</th>
+          <th scope="col">f6</th>
+          <th scope="col">f7</th>
+          <th scope="col">f8</th>
+          <th scope="col">f9</th>
+        </tr>
+      </thead>
+    {% for corso in corsi%}
+
+
+
+
+
+
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>{{ corso.titolo }}</td><td>{{ corso.studenti_referenti }}</td><td>{{ corso.classi_autori }}</td><td>{{ corso.aule }}</td><td>{{ corso.progressivo }}</td><td>{{ corso.f1 }}</td><td>{{ corso.f2 }}</td><td>{{ corso.f3}}</td><td>{{ corso.f4 }}</td><td>{{ corso.f5 }}</td><td>{{ corso.f6 }}</td><td>{{ corso.f7 }}</td><td>{{ corso.f8 }}</td><td>{{ corso.f9 }}</td>
+
+    {% endfor %}
+  </tr>
+</tbody>
+</table>
+
+{% endblock content %}

@@ -4,9 +4,19 @@
 <body>
 <p>Scrivi il tuo problema</p>
 
-<form method="POST" class="mail">{% csrf_token %}
-{{ form.testo }}
-<button type="submit" class="save btn btn-default">invia</button>
+<form method="POST" class="form-inline">
+  {% csrf_token %}
+
+
+<div class="form-group row">
+
+   <div class="col-sm-10">
+
+     <input class="form-control" >{{form}}</input>
+     <button type="submit" class="save btn btn-default">invia</button>
+   </div>
+ </div>
+
 
 </form>
 </body>

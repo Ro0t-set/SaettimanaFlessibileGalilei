@@ -2,37 +2,13 @@
 
 {% block content %}
 
-<form method="GET" action=""> {{ form.q }}<input type="submit" value="Search"> <a href="/">indietro</a>
-  <p>numero corsi tot: {{corsi.count}}</p>
-</form>
-
-
-    <p>{{ ripetiziones }} </p>
-
-    {% for corso in corsi%}
-<div class="well">
-
-    <div class="corso">
-
-
-            <div class="date">
-                {{ corso.published_date }}
-
-
-            </div>
-            <h3><a href="">{{ corso.titolo }}</a></h3>
-            <p>{{ corso.descrizione }}</p>
-            <h10>{{ corso.author }}</h10>
-            <p>{{corso.id}} </p>
-            {%if corso.progressivo == True%} <p>progressivo</p>
-            {%elif corso.progressivo == False%}<p>singolo</p>
-            {%endif%}
-            
-
-
-
-        </div>
-</div>
-    {% endfor %}
+<h1 style="color:blue;">La Settimana Flessibile</h1>
+<h3 style="color:red;">Info:</h3>
+  <p>1)Per iscriverti ai corsi vai sulla sezione "i miei corsi"</p>
+  <p>2)Cliccando sull'icona "modifica" visualizzerai tutti i corsi relativi alla fascia selezionata</p>
+<p>3)Seleziona il corso che più ti interessa e iscriviti</p>
+<p>4)Ripeti l'operazione per ogni fascia indicata</p>
+<p>5)Nel caso in cui dovessi riscontrare difficoltà nelle iscrizioni o problemi di qualsiasi genere, puoi contattare lo Staff della settimana flesibile tramite la pagina "Help"</p>
+<p>6)Provvederemo a rispondere ad ogni singola richiesta tramite la mail che inserirai</p>
 
 {% endblock content %}

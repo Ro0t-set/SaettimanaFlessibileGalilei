@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Corso, Iscrizione
 from django.shortcuts import get_object_or_404, render
-from .forms import CreaCorsi, IscrizioneForm
+from .forms import CreaCorsi, IscrizioneForm, Mail
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -60,6 +60,13 @@ def crea(request):
             corso.author = request.user
             corso.published_date = timezone.now()
             corso.save()
+            subject, from_email, to = 'corsi', 'settimanaflessibile@gmail.com', 'settimanaflessibile@gmail.com'
+            text_content = '456'
+            html_content =  form.cleaned_data['titolo']
+
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
 
             # corsixl = Workbook()
             # dest_filename = 'tabelle/corsi.xlsx'
@@ -84,11 +91,17 @@ def crea(request):
 
     return render(request, 'corsi/crea.html', {'form' : form })
 
-
+@login_required(login_url='/login/')
 def home (request):
      corsi = Corso.objects.all()
 
      return render(request, 'corsi/home.html', {'corsi': corsi})
+
+def tabelle (request):
+     corsi = Corso.objects.all()
+
+
+     return render(request, 'corsi/tabelle.html', {'corsi': corsi})
 
 
 
@@ -115,25 +128,27 @@ def edit_iscrizioni(request, corso_id):
             iscrizione.user = request.user
             iscrizione.published_date = timezone.now()
             if fasca.progressivo:
+
                 if fasca.f1:
-                    iscrizione.corso1_id= corso_id
+                    iscrizione.corso1 = fasca
                 if fasca.f2:
-                    iscrizione.corso2_id= corso_id
+                    iscrizione.corso2 = fasca
+
                 if fasca.f3:
-                    iscrizione.corso3_id= corso_id
+                    iscrizione.corso3_id= fasca
                 if fasca.f4:
-                    iscrizione.corso4_id= corso_id
+                    iscrizione.corso4_id= fasca
                 if fasca.f5:
-                    iscrizione.corso5_id= corso_id
+                    iscrizione.corso5_id= fasca
                 if fasca.f6:
-                    iscrizione.corso6_id= corso_id
+                    iscrizione.corso6_id= fasca
                 if fasca.f7:
-                    iscrizione.corso7_id= corso_id
+                    iscrizione.corso7_id= fasca
                 if fasca.f8:
-                    iscrizione.corso8_id= corso_id
+                    iscrizione.corso8_id= fasca
                 if fasca.f9:
-                    iscrizione.corso9_id= corso_id
-            form.save()
+                    iscrizione.corso9_id= fasca
+            iscrizione.save()
 
 
         return redirect('privata')
@@ -190,3 +205,17 @@ def filtro_fasce(request):
     if corsi == 'f9':
         corsi = Corso.objects.filter(f9=True)
     return render(request, 'corsi/filtro_fasce.html', {'corsi' : corsi})
+
+def help(request):
+    if request.method == "POST":
+        form = Mail(request.POST)
+        if form.is_valid():
+            subject, from_email, to = 'problemi', 'settimanaflessibile@gmail.com', 'settimanaflessibile@gmail.com'
+            text_content = '456'
+            html_content =  form.cleaned_data['testo']
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+    else:
+        form = Mail()
+    return render(request, 'corsi/help.html', {'form': form})
