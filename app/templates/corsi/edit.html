@@ -15,7 +15,10 @@
 
       <form method="POST" class="post-form">
         {% csrf_token %}
-        {{form.as_p}}
+	      
+	<div style="display:none;">
+	      {{form.as_p}}
+	<div>
 
       <input type="submit" value="Iscriviti" />
     </form>
