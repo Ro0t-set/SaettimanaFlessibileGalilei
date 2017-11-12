@@ -1,3 +1,8 @@
 body{
   background-image: url(sfondo.png);
 }
+.icone{
+	height: 25px;
+	width: auto;
+	color:blue;
+}
