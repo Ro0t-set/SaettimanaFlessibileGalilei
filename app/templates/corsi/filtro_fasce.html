@@ -11,9 +11,7 @@
 
     {% for corso in corsi%}
 
-{%if corso.error%}
-<i class="material-icons">remove</i>
-{%endif%}
+
 
         <div class="card">
   <div class="card-header">
@@ -21,13 +19,13 @@
   </div>
   <div class="card-body">
     <h4 class="card-title">{{ corso.titolo }}</h4>
-    <p>{{ corso.descrizione }}</p>
+
   <h10>{{ corso.studenti_referenti }}</h10>
   <p>{{corso.id}} </p>
   {%if corso.progressivo == True%} <p>progressivo</p>
   {%elif corso.progressivo == False%}<p>singolo</p>
   {%endif%}
-    <a href="{%url 'edit_iscrizioni' corso.id%}" class="btn btn-primary">piu dettagli</a>
+    <a href="{%url 'edit_iscrizioni' corso.id  %}?f={{fascia}}" class="btn btn-primary">Info e Iscriviti</a>
   </div>
 </div>
 <br>

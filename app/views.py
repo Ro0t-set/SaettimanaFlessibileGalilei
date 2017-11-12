@@ -105,6 +105,8 @@ def edit_iscrizioni(request, corso_id):
     fasca = Corso.objects.get( pk=corso_id)
     tabella= Iscrizione.objects.filter(user=request.user)
     iscrizione=get_object_or_404(Iscrizione, pk=tabella)
+    singoli=request.GET.get("f")
+
 
 
 
@@ -136,23 +138,22 @@ def edit_iscrizioni(request, corso_id):
                     iscrizione.corso8= fasca
 
             else:
-                if fasca.f1:
-                    iscrizione.corso1_id = corso_id
-                elif fasca.f2:
-                    iscrizione.corso2_id = corso_id
-
-                elif fasca.f3:
-                    iscrizione.corso3_id= corso_id
-                elif fasca.f4:
-                    iscrizione.corso4_id= corso_id
-                elif fasca.f5:
-                    iscrizione.corso5_id= corso_id
-                elif fasca.f6:
-                    iscrizione.corso6_id= corso_id
-                elif fasca.f7:
-                    iscrizione.corso7_id= corso_id
-                elif fasca.f8:
-                    iscrizione.corso8_id= corso_id
+                if fasca.f1 and singoli=='f1':
+                    iscrizione.corso1_id = fasca
+                elif fasca.f2 and singoli=='f2':
+                    iscrizione.corso2_id = fasca
+                elif fasca.f3 and singoli=='f3':
+                    iscrizione.corso3_id= fasca
+                elif fasca.f4 and singoli=='f4':
+                    iscrizione.corso4_id= fasca
+                elif fasca.f5 and singoli=='f5':
+                    iscrizione.corso5_id= fasca
+                elif fasca.f6 and singoli=='f6':
+                    iscrizione.corso6_id= fasca
+                elif fasca.f7 and singoli=='f7':
+                    iscrizione.corso7_id= fasca
+                elif fasca.f8 and singoli=='f8':
+                    iscrizione.corso8_id= fasca
 
 
         iscrizione.save()
@@ -166,53 +167,36 @@ def edit_iscrizioni(request, corso_id):
     return render(request, 'corsi/edit.html', {'form':form, 'corsi':corsi})
 
 
-# @login_required
-# def iscrizioni(request, id):
-#
-#
-#     corsi = request.GET.get("a")
-#     if corsi:
-#         corsi = Corso.objects.filter(id= corsi)
-#         corsi = get_object_or_404(iscrizioni, id=id)
-#
-#
-#
-#         if request.method == 'POST':
-#             form = IscrizioneForm(request.POST, corsi=corsi )
-#             if form.is_valid():
-#                 iscrizione = form.save(commit=False)
-#                 iscrizione.user = request.user
-#                 iscrizione.published_date = timezone.now()
-#                 iscrizione.save()
-#                 return redirect('home')
-#
-#
-#         else:
-#             form = IscrizioneForm()
-#     return render(request, 'corsi/iscrizioni.html', {'corsi' : corsi, 'form':form })
 
 @login_required(login_url='/login/')
 def filtro_fasce(request):
     corsi=request.GET.get("f")
     if corsi == 'f1':
         corsi = Corso.objects.filter(f1=True)
-
+        fascia= 'f1'
     if corsi == 'f2':
         corsi = Corso.objects.filter(f2=True)
+        fascia= 'f2'
     if corsi == 'f3':
         corsi = Corso.objects.filter(f3=True)
+        fascia= 'f3'
     if corsi == 'f4':
         corsi = Corso.objects.filter(f4=True)
+        fascia= 'f4'
     if corsi == 'f5':
         corsi = Corso.objects.filter(f5=True)
+        fascia= 'f5'
     if corsi == 'f6':
         corsi = Corso.objects.filter(f6=True)
+        fascia= 'f6'
     if corsi == 'f7':
         corsi = Corso.objects.filter(f7=True)
+        fascia= 'f7'
     if corsi == 'f8':
+        fascia= 'f8'
         corsi = Corso.objects.filter(f8=True)
 
-    return render(request, 'corsi/filtro_fasce.html', {'corsi' : corsi})
+    return render(request, 'corsi/filtro_fasce.html', {'corsi' : corsi, 'fascia': fascia})
 
 def help(request):
     if request.method == "POST":
