@@ -11,7 +11,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_protect
-import operator
 from openpyxl import Workbook
 from openpyxl.compat import range
 from openpyxl.utils import get_column_letter
@@ -35,8 +34,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.validators import ASCIIUsernameValidator
 
 @csrf_protect
-
-
 def crea(request):
 #    corsi= Corso.objects.all()
 #    print (corsi.count())
@@ -45,10 +42,6 @@ def crea(request):
 #        print('errore')
 #    else:
 #        print('successo')
-
-
-
-
 
     if request.method == "POST":
 
@@ -94,8 +87,6 @@ def tabelle (request):
 def privata(request):
 
     iscrizioni= Iscrizione.objects.filter(user=request.user)
-
-
     return render(request, 'corsi/privata.html', {'iscrizioni':iscrizioni})
 
 
@@ -106,9 +97,6 @@ def edit_iscrizioni(request, corso_id):
     tabella= Iscrizione.objects.filter(user=request.user)
     iscrizione=get_object_or_404(Iscrizione, pk=tabella)
     singoli=request.GET.get("f")
-
-
-
 
 
     if request.method == "POST":
