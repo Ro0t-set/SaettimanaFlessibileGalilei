@@ -22,6 +22,7 @@
 
   <h10>{{ corso.studenti_referenti }}</h10>
   <p>{{corso.id}} </p>
+  <p>{{iscrizioni.count}}<p>
   {%if corso.progressivo == True%} <p>progressivo</p>
   {%elif corso.progressivo == False%}<p>singolo</p>
   {%endif%}
