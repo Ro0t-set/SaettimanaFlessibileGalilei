@@ -10,7 +10,8 @@
       <br>
       <h2 class="titolo">{{ corso.titolo|safe }}</h2>
       <p>{{corso.descrizione}}</p>
-      <p>n di iscritti: {{contatore.count}}/{{corso.aule.max_iscritti}}
+
+      <p>n di iscritti: {{contatore}}/{{corso.aule.max_iscritti}}
 
 
       <form method="POST" class="post-form">
