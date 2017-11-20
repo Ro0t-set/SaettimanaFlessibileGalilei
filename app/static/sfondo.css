@@ -6,3 +6,20 @@ body{
 	width: auto;
 	color:blue;
 }
+
+
+#loading_screen{
+  display: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+</style>

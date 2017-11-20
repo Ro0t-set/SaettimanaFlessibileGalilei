@@ -12,7 +12,7 @@
     {% for corso in corsi%}
 
 
-
+{% csrf_token %}
         <div class="card">
   <div class="card-header">
   corso
@@ -26,7 +26,13 @@
   {%if corso.progressivo == True%} <p>progressivo</p>
   {%elif corso.progressivo == False%}<p>singolo</p>
   {%endif%}
-    <a href="{%url 'edit_iscrizioni' corso.id  %}?f={{fascia}}" class="btn btn-primary">Info e Iscriviti</a>
+
+    <form method="POST" class="post-form"  action="{%url 'edit_iscrizioni' corso.id  %}?f={{fascia}}">
+  {% csrf_token %}
+
+  <a href="{%url 'edit_iscrizioni' corso.id  %}?f={{fascia}}" class="btn btn-primary">Info e Iscriviti</a>
+</form>
+
   </div>
 </div>
 <br>

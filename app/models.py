@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
+
 # Create your models here.
 class Aula(models.Model):
     aule= models.CharField(max_length=100, default="")
@@ -55,6 +56,7 @@ class Corso(models.Model):
 
 
 class Iscrizione(models.Model):
+
     user = models.ForeignKey('auth.User')
     corso1= models.ForeignKey('Corso', blank=True, null=True, related_name="corso1")
     corso2= models.ForeignKey('Corso', blank=True, null=True, related_name="corso2")

@@ -8,10 +8,10 @@
 <div class="articolo_centrale">
 
       <br>
-      <h2 class="titolo">{{ corso.titolo|safe }}</h2>
-      <p>{{corso.descrizione}}</p>
+      <h2 class="titolo">Sicuro di voler eliminare l'iscrizione da "{{ corso.titolo|safe }}"</h2>
 
-      <p>n di iscritti: {{contatore}}/{{corso.aule.max_iscritti}}
+
+
 
 
       <form method="POST" class="post-form">
@@ -20,7 +20,7 @@
         <div style="display:none;">
         {{form.as_p}}
         </div>
-      <input type="submit" class="btn btn-primary"value="Iscriviti" />
+      <input type="submit" class="btn btn-danger"value="Elimina" />
 
 
 

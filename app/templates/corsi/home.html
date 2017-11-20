@@ -1,6 +1,34 @@
 {% extends 'corsi/base.html' %}
 
 {% block content %}
+<div id="loading_screen">
+  <h1>Loading...</h1>
+  <p>La pagina è in caricamento<br/>
+  Resta connesso e non cambiare sito!</p>
+</div>
+<script type="text/javascript">
+mostra_loading_screen();
+</script>
+
+<script type="text/javascript">
+(function(){
+  if (window.addEventListener)
+  {
+    window.addEventListener("load", nascondi_loading_screen, false);
+  }else{
+    window.attachEvent("onload", nascondi_loading_screen);
+  }
+})();
+function mostra_loading_screen()
+{
+  document.getElementById("loading_screen").style.display = 'block';
+}
+function nascondi_loading_screen()
+{
+  document.getElementById("loading_screen").style.display = 'none';
+}
+</script>
+
 
 <h1 style="color:blue;">La Settimana Flessibile</h1>
 <h3 style="color:red;">Info:</h3>

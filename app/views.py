@@ -77,9 +77,10 @@ def home (request):
 
 def tabelle (request):
      corsi = Corso.objects.all()
+     appelli = Iscrizione.objects.filter(corso1=corsi)
+     print (appelli)
 
-
-     return render(request, 'corsi/tabelle.html', {'corsi': corsi})
+     return render(request, 'corsi/tabelle.html', {'corsi': corsi, 'appelli':appelli})
 
 
 
@@ -129,74 +130,79 @@ def edit_iscrizioni(request, corso_id):
 
     print (contatore)
 
+
     print("numero massimo:",classe_max)
 
-
-
-    if request.method == "POST":
-        form = IscrizioneForm(request.POST, instance= iscrizione)
-
-
-        if form.is_valid():
-            iscrizione = form.save(commit=False)
-            iscrizione.user = request.user
-            iscrizione.published_date = timezone.now()
-            if fasca.progressivo:
-                if contatore<classe_max:
-                    if fasca.f1:
-                        iscrizione.corso1 = fasca
-                    if fasca.f2:
-                        iscrizione.corso2 = fasca
-                    if fasca.f3:
-                        iscrizione.corso3= fasca
-                    if fasca.f4:
-                        iscrizione.corso4= fasca
-                    if fasca.f5:
-                        iscrizione.corso5= fasca
-                    if fasca.f6:
-                        iscrizione.corso6= fasca
-                    if fasca.f7:
-                        iscrizione.corso7= fasca
-                    if fasca.f8:
-                        iscrizione.corso8= fasca
-                else:
-                    return redirect('errore')
-
-
-            else:
-                if contatore<classe_max:
-                    if fasca.f1 and singoli=='f1':
-                        iscrizione.corso1_id = fasca
-                    elif fasca.f2 and singoli=='f2':
-                        iscrizione.corso2_id = fasca
-                    elif fasca.f3 and singoli=='f3':
-                        iscrizione.corso3_id= fasca
-                    elif fasca.f4 and singoli=='f4':
-                        iscrizione.corso4_id= fasca
-                    elif fasca.f5 and singoli=='f5':
-                        iscrizione.corso5_id= fasca
-                    elif fasca.f6 and singoli=='f6':
-                        iscrizione.corso6_id= fasca
-                    elif fasca.f7 and singoli=='f7':
-                        iscrizione.corso7_id= fasca
-                    elif fasca.f8 and singoli=='f8':
-                        iscrizione.corso8_id= fasca
-                else:
-                    return redirect('errore')
-
-
-        iscrizione.save()
-        return redirect('successo')
-
+    if contatore>=classe_max:
+        return redirect('errore')
     else:
-        form = IscrizioneForm(instance= iscrizione)
 
-    return render(request, 'corsi/edit.html', {'form':form, 'corsi':corsi, 'contatore':contatore})
+
+        if request.method == "POST":
+            form = IscrizioneForm(request.POST, instance= iscrizione)
+
+
+            if form.is_valid():
+                iscrizione = form.save(commit=False)
+                iscrizione.user = request.user
+                iscrizione.published_date = timezone.now()
+                if fasca.progressivo:
+                    if contatore<classe_max:
+                        if fasca.f1:
+                            iscrizione.corso1 = fasca
+                        if fasca.f2:
+                            iscrizione.corso2 = fasca
+                        if fasca.f3:
+                            iscrizione.corso3= fasca
+                        if fasca.f4:
+                            iscrizione.corso4= fasca
+                        if fasca.f5:
+                            iscrizione.corso5= fasca
+                        if fasca.f6:
+                            iscrizione.corso6= fasca
+                        if fasca.f7:
+                            iscrizione.corso7= fasca
+                        if fasca.f8:
+                            iscrizione.corso8= fasca
+                    else:
+                        return redirect('errore')
+
+
+                else:
+                    if contatore<classe_max:
+                        if fasca.f1 and singoli=='f1':
+                            iscrizione.corso1_id = fasca
+                        elif fasca.f2 and singoli=='f2':
+                            iscrizione.corso2_id = fasca
+                        elif fasca.f3 and singoli=='f3':
+                            iscrizione.corso3_id= fasca
+                        elif fasca.f4 and singoli=='f4':
+                            iscrizione.corso4_id= fasca
+                        elif fasca.f5 and singoli=='f5':
+                            iscrizione.corso5_id= fasca
+                        elif fasca.f6 and singoli=='f6':
+                            iscrizione.corso6_id= fasca
+                        elif fasca.f7 and singoli=='f7':
+                            iscrizione.corso7_id= fasca
+                        elif fasca.f8 and singoli=='f8':
+                            iscrizione.corso8_id= fasca
+                    else:
+                        return redirect('errore')
+
+
+            iscrizione.save()
+            return redirect('successo')
+
+        else:
+            form = IscrizioneForm(instance= iscrizione)
+
+        return render(request, 'corsi/edit.html', {'form':form, 'corsi':corsi, 'contatore':contatore})
 
 
 
 @login_required(login_url='/login/')
 def filtro_fasce(request):
+
     corsi=request.GET.get("f")
 
 
@@ -226,7 +232,79 @@ def filtro_fasce(request):
         fascia= 'f8'
 
 
+
     return render(request, 'corsi/filtro_fasce.html', {'corsi' : corsi, 'fascia': fascia})
+
+@login_required(login_url='/login/')
+def elimina(request, corso_id):
+
+    corsi = Corso.objects.filter( pk=corso_id)
+    fasca = Corso.objects.get( pk=corso_id)
+    tabella= Iscrizione.objects.filter(user=request.user)
+    iscrizione=get_object_or_404(Iscrizione, pk=tabella)
+    classe_max= fasca.aule.max_iscritti
+    singoli=request.GET.get("f")
+
+    if request.method == "POST":
+        form = IscrizioneForm(request.POST, instance= iscrizione)
+
+
+        if form.is_valid():
+            iscrizione = form.save(commit=False)
+            iscrizione.user = request.user
+            iscrizione.published_date = timezone.now()
+            if fasca.progressivo:
+
+                if fasca.f1:
+                    iscrizione.corso1_id = ''
+                if fasca.f2:
+                    iscrizione.corso2_id = ''
+                if fasca.f3:
+                    iscrizione.corso3_id= ''
+                if fasca.f4:
+                    iscrizione.corso4_id= ''
+                if fasca.f5:
+                    iscrizione.corso5_id= ''
+                if fasca.f6:
+                    iscrizione.corso6_id= ''
+                if fasca.f7:
+                    iscrizione.corso7_id= ''
+                if fasca.f8:
+                    iscrizione.corso8_id= ''
+            else:
+                return redirect('privata')
+
+
+
+
+                if fasca.f1 and singoli=='f1':
+                    iscrizione.corso1_id = ''
+                elif fasca.f2 and singoli=='f2':
+                    iscrizione.corso2_id = ''
+                elif fasca.f3 and singoli=='f3':
+                    iscrizione.corso3_id= ''
+                elif fasca.f4 and singoli=='f4':
+                    iscrizione.corso4_id= ''
+                elif fasca.f5 and singoli=='f5':
+                    iscrizione.corso5_id= ''
+                elif fasca.f6 and singoli=='f6':
+                    iscrizione.corso6_id= ''
+                elif fasca.f7 and singoli=='f7':
+                    iscrizione.corso7_id= ''
+                elif fasca.f8 and singoli=='f8':
+                    iscrizione.corso8_id= ''
+                else:
+                    return redirect('privata')
+
+
+        iscrizione.save()
+        return redirect('privata')
+
+    else:
+        form = IscrizioneForm(instance= iscrizione)
+
+    return render(request, 'corsi/elimina.html', {'form':form, 'corsi':corsi})
+
 
 def help(request):
     if request.method == "POST":

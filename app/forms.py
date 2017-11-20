@@ -22,7 +22,8 @@ class IscrizioneForm(forms.ModelForm):
     class Meta:
         model = Iscrizione
         fields = ['corso1', 'corso2', 'corso3', 'corso4', 'corso5', 'corso6', 'corso7', 'corso8']
-        
+        search_fields = ('user')
+
 
 class Mail(forms.Form):
     testo=forms.CharField(widget=forms.TextInput(attrs={'form-control': 'form-control'}))

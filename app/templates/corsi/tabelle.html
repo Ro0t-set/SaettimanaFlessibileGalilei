@@ -26,24 +26,19 @@
           <th scope="col">f6</th>
           <th scope="col">f7</th>
           <th scope="col">f8</th>
-          <th scope="col">f9</th>
         </tr>
       </thead>
     {% for corso in corsi%}
-
-
-
-
-
-
-  <tbody>
+    <tbody>
     <tr>
       <th scope="row"></th>
-      <td>{{ corso.titolo }}</td><td>{{ corso.studenti_referenti }}</td><td>{{ corso.classi_autori }}</td><td>{{ corso.aule }}</td><td>{{ corso.progressivo }}</td><td>{{ corso.f1 }}</td><td>{{ corso.f2 }}</td><td>{{ corso.f3}}</td><td>{{ corso.f4 }}</td><td>{{ corso.f5 }}</td><td>{{ corso.f6 }}</td><td>{{ corso.f7 }}</td><td>{{ corso.f8 }}</td><td>{{ corso.f9 }}</td>
+      <td>{{ corso.titolo }}</td><td>{{ corso.studenti_referenti }}</td><td>{{ corso.classi_autori }}</td><td>{{ corso.aule }}</td><td>{{ corso.progressivo }}</td><td>{{ corso.f1 }}</td><td>{{ corso.f2 }}</td><td>{{ corso.f3}}</td><td>{{ corso.f4 }}</td><td>{{ corso.f5 }}</td><td>{{ corso.f6 }}</td><td>{{ corso.f7 }}</td><td>{{ corso.f8 }}</td>
 
     {% endfor %}
   </tr>
 </tbody>
 </table>
+<br>
+<br>
 
 {% endblock content %}
