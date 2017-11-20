@@ -272,10 +272,6 @@ def elimina(request, corso_id):
                 if fasca.f8:
                     iscrizione.corso8_id= ''
             else:
-                return redirect('privata')
-
-
-
 
                 if fasca.f1 and singoli=='f1':
                     iscrizione.corso1_id = ''
