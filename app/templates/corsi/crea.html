@@ -4,12 +4,59 @@
     <h1>Crea Corsi</h1>
 <form method="POST" >
 <div class="form-row">
-<div class="form-group col-md-6">
+<div class="col-sm-10 col-form-label">
               {% csrf_token %}
-              {{ form.as_p}}
 
 
-        <button type="submit" class="save btn btn-default">Save</button>
+              <p>Titolo corso:{{form.titolo}}</p>
+              <br>
+              <p>Studenti Referenti:{{form.studenti_referenti}}</p>
+              <br>
+              <p>Classi Studenti Referenti:{{form.classi_autori}}</p>
+              <br>
+              <p>Descrizione Corso:{{form.descrizione}}</p>
+              <br>
+              <p>Aula:{{form.aule}}</p>
+              <br>
+              <p>Progressivo?{{form.progressivo}}</p>
+              <br>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+          <th scope="col">#</th>
+          <th scope="col">Martedì</th>
+          <th scope="col">Mercoledì</th>
+          <th scope="col">Giovedì</th>
+          <th scope="col">Venerdì</th>
+        </tr>
+
+        </thead>
+
+          <tr> <th scope="row">1.</th> <td>Lezione </td><td>Lezione </td><td>Lezione </td></td><td>Lezione </tr>
+          <tr> <th scope="row">2.</th>
+          <td> {{form.f1}}</td>
+          <td> {{form.f3}}</td>
+          <td> {{form.f5}}</td>
+          <td> {{form.f7}}</td>
+          </tr>
+          <tr> <th scope="row">3.</th>
+          <td> {{form.f2}}</td>
+          <td>{{form.f4}} </td>
+          <td> {{form.f6}}</td>
+          <td> {{form.f8}}</td>
+          </tr>
+
+          </table>
+          <button type="submit" class="save btn btn-primary">Save</button>
+            </div>
+
+
+
+
+
+
+
 </div>
   </div>
   </form>

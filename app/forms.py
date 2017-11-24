@@ -14,7 +14,13 @@ class CreaCorsi(forms.ModelForm):
     class Meta:
         model = Corso
         fields = ['titolo', 'studenti_referenti', 'classi_autori', 'descrizione','aule', 'progressivo','f1','f2','f3','f4','f5','f6','f7','f8' ]
+        widgets = {
+            'titolo': forms.TextInput(attrs={'class': 'form-control'}),
+            'studenti_referenti': forms.TextInput(attrs={'class': 'form-control'}),
+            'classi_autori': forms.TextInput(attrs={'class': 'form-control'}),
+            'descrizione': forms.TextInput(attrs={'class': 'form-control'}),
 
+        }
 
 
 
@@ -22,9 +28,8 @@ class IscrizioneForm(forms.ModelForm):
     class Meta:
         model = Iscrizione
         fields = ['corso1', 'corso2', 'corso3', 'corso4', 'corso5', 'corso6', 'corso7', 'corso8']
-        search_fields = ('user')
 
 
 class Mail(forms.Form):
-    testo=forms.CharField(widget=forms.TextInput(attrs={'form-control': 'form-control'}))
-    mail= forms.EmailField(widget=forms.TextInput(attrs={'form-control': 'form-control'}))
+    testo=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))
+    mail= forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))

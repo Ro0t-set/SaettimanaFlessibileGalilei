@@ -35,13 +35,7 @@ from django.contrib.auth.validators import ASCIIUsernameValidator
 
 @csrf_protect
 def crea(request):
-#    corsi= Corso.objects.all()
-#    print (corsi.count())
-#    print ('funge')
-#    if corsi.count() > 4:
-#        print('errore')
-#    else:
-#        print('successo')
+
 
     if request.method == "POST":
 
@@ -52,15 +46,24 @@ def crea(request):
             corso = form.save(commit=False)
             corso.author = request.user
             corso.published_date = timezone.now()
-            corso.save()
+
+
 
             subject, from_email, to = 'corsi', 'settimanaflessibile@gmail.com', 'settimanaflessibile@gmail.com'
             text_content = '456'
-            html_content =  form.cleaned_data['titolo']
+            html_content =  (
+            '<style>table{border-collapse:collapse}td, th { border:1px solid #ddd;padding:8px;}</style>' +
+            '<table><tr><td>Titolo</td><td>Studenti Referenti</td><td>Classi Studenti Referenti</td><td>Descrizione del Corso</td></tr>' +
+            '<tr><td>' + form.cleaned_data['titolo'] + '</td><td>' + form.cleaned_data['studenti_referenti'] + '</td></tr> </table>')
+
+
+
+
 
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
+            corso.save()
 
             return redirect('successo')
 
@@ -306,15 +309,18 @@ def help(request):
     if request.method == "POST":
         form = Mail(request.POST)
         if form.is_valid():
-            subject, from_email, to = 'problemi', 'settimanaflessibile@gmail.com', 'settimanaflessibile@gmail.com'
+            subject, from_email, to = form.cleaned_data['mail'], 'settimanaflessibile@gmail.com', 'settimanaflessibile@gmail.com'
             text_content = '456'
             html_content =  form.cleaned_data['testo']
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
-            msg.send()
+            msg.send(fail_silently=False)
+            return redirect('successo')
     else:
         form = Mail()
     return render(request, 'corsi/help.html', {'form': form})
+
+
 
 def errore(request):
     return render(request, 'corsi/errore.html')
