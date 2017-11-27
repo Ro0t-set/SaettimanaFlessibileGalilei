@@ -72,7 +72,7 @@ def crea(request):
 
     return render(request, 'corsi/crea.html', {'form' : form })
 
-@login_required(login_url='/login/')
+
 def home (request):
      corsi = Corso.objects.all()
 

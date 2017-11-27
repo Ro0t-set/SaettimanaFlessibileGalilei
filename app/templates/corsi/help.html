@@ -8,14 +8,14 @@
   {% csrf_token %}
 
 
-<div class="form-group">
+<div class="form-group row">
 <div class="col-sm-10 col-form-label">
 
   <p>Scrivi la tua mail:{{form.mail}}</p>
   <br>
 
   <p>Scrivi il tuo problema: {{form.testo}}</p>
-
+<p>Ti risponderemo appena possibile con la mail lasciata in precendenza</p>
      <button type="submit" class="btn btn-primary">Invia</button>
    </div>
  </div>
@@ -23,7 +23,7 @@
 
 </form>
 
-<p>Ti risponderemo appena possibile con la mail lasciata in precendenza</p>
+
 </body>
 </html>
 {% endblock %}

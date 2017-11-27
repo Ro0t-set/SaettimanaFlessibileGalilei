@@ -18,7 +18,7 @@ class CreaCorsi(forms.ModelForm):
             'titolo': forms.TextInput(attrs={'class': 'form-control'}),
             'studenti_referenti': forms.TextInput(attrs={'class': 'form-control'}),
             'classi_autori': forms.TextInput(attrs={'class': 'form-control'}),
-            'descrizione': forms.TextInput(attrs={'class': 'form-control'}),
+            'descrizione': forms.Textarea(attrs={'class': 'form-control', 'rows':'3'}),
 
         }
 
@@ -31,5 +31,5 @@ class IscrizioneForm(forms.ModelForm):
 
 
 class Mail(forms.Form):
-    testo=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))
+    testo=forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control form-control-lg', 'rows':'3' }))
     mail= forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))

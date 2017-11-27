@@ -22,4 +22,9 @@ body{
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
+
+.spunta{
+  height: 90px;
+  width: auto;
+}
 </style>
