@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method="GET" action=""> {{ form.q }}<input type="submit" value="Search"> <a href="/">indietro</a>
+<form method="GET" action=""> {{ form.q }}<input type="submit" value="Search"> <a href="/tabelle">indietro</a>
   <p>numero corsi tot: {{corsi.count}}</p>
 </form>
 
@@ -16,23 +16,25 @@
           <th scope="col">Titolo</th>
           <th scope="col">Autori</th>
           <th scope="col">Sezione Autori</th>
+<th scope="col">descrizione</th>
           <th scope="col">Classe Richiesta</th>
           <th scope="col">Progressivo?</th>
-          <th scope="col">f1</th>
-          <th scope="col">f2</th>
-          <th scope="col">f3</th>
-          <th scope="col">f4</th>
-          <th scope="col">f5</th>
-          <th scope="col">f6</th>
-          <th scope="col">f7</th>
-          <th scope="col">f8</th>
+          <th scope="col">f1({{contatore.0}})</th>
+          <th scope="col">f2({{contatore.1}})</th>
+          <th scope="col">f3({{contatore.2}})</th>
+          <th scope="col">f4({{contatore.3}})</th>
+          <th scope="col">f5({{contatore.4}})</th>
+          <th scope="col">f6({{contatore.5}})</th>
+          <th scope="col">f7({{contatore.6}})</th>
+          <th scope="col">f8({{contatore.7}})</th>
+          <th scope="col">f9({{contatore.8}})</th>
         </tr>
       </thead>
     {% for corso in corsi%}
     <tbody>
     <tr>
       <th scope="row"></th>
-      <td>{{ corso.titolo }}</td><td>{{ corso.studenti_referenti }}</td><td>{{ corso.classi_autori }}</td><td>{{ corso.aule }}</td><td>{{ corso.progressivo }}</td><td>{{ corso.f1 }}</td><td>{{ corso.f2 }}</td><td>{{ corso.f3}}</td><td>{{ corso.f4 }}</td><td>{{ corso.f5 }}</td><td>{{ corso.f6 }}</td><td>{{ corso.f7 }}</td><td>{{ corso.f8 }}</td>
+      <td><a href="/{{corso.id}}/appello">{{ corso.titolo }}<a></td><td>{{ corso.studenti_referenti }}</td><td>{{ corso.classi_autori }}</td><td>{{ corso.descrizione }}</td><td>{{ corso.aule }}</td><td>{{ corso.progressivo }}</td><td>{{ corso.f1 }}</td><td>{{ corso.f2 }}</td><td>{{ corso.f3}}</td><td>{{ corso.f4 }}</td><td>{{ corso.f5 }}</td><td>{{ corso.f6 }}</td><td>{{ corso.f7 }}</td><td>{{ corso.f8 }}<td>{{ corso.f9 }}</td></td>
 
     {% endfor %}
   </tr>
@@ -40,5 +42,10 @@
 </table>
 <br>
 <br>
+
+{%for iscrizione in appelli%}
+
+
+{%endfor%}
 
 {% endblock content %}

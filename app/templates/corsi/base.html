@@ -1,8 +1,11 @@
+
 {% load staticfiles %}
 <html>
     <head>
         <title>SettimanaFlessibile</title>
+         <meta charset="UTF-8">
         <link rel="stylesheet" href="/static/sfondo.css" >
+          <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -11,37 +14,72 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="icon" href="/static/favicon.ico" />
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110453102-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110453102-1');
+</script>
+
     </head>
     <body>
 
+<script type="text/javascript">
+document.write(‘<div id="loading" align="center"><img src="http://www.donatantonio.net//immagini/mini_loading.gif" alt="Caricamento" /><br><br>Caricamnto pagina...</div>’);
+window.onload=function(){
+document.getElementById("loading").style.display="none";
+}
+</script>
 
 
 
 
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg  fixed-top  navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+<img src="/static/favicon.ico" height="40">
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'privata' %}">I miei corsi</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'crea' %}">Crea un corso</a>
-      </li>
+ <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   Disposizione Classi
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a class="dropdown-item" href="{% url 'disp_classi' %}">Disposizione Aule</a>
+    <a class="dropdown-item" href="{% url 'disp_classi_informatica' %}">Disposizione Informatica</a>
+    <a class="dropdown-item" href="{% url 'disp_classi_magna' %}">Disposizione Magna</a>
+    <a class="dropdown-item" href="{% url 'disp_classi_palestra' %}">Disposizione Palestra</a>
+    <a class="dropdown-item" href="{% url 'disp_classi_arte' %}">Disposizione Arte</a>
+ </div>
+    
       <li class="nav-item">
         <a class="nav-link" href="{% url 'help' %}">Help</a>
       </li>
+           <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sviluppatori
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a class="dropdown-item" href="https://twitter.com/TommasoPatriti">Sviluppatore: Tommaso Patriti</a>
+    <a class="dropdown-item" href="https://www.instagram.com/federicobravetti/">Grafico(logo, icone): Federico Bravetti</a>
+</li>
+</div>
     </ul>
     <span class="navbar-text">
       {% if user.is_authenticated %}
       {{user}}
-      <a href="/logout"> logout</a>
+      <a href="{% url 'logout' %}?next=/">|  logout</a>
       {%else%}
       <a href="/login">login</a>
       {%endif%}
@@ -49,13 +87,35 @@
   </div>
 </nav>
 
+  {% if messages %}
+<br>
+<br>
+<div class="alert alert-danger coll-7" role="alert">
+
+
+  {% for message in messages %}
+  <h4>{% if message.tags %} {% endif %}{{ message }}</h4>
+
+
+</div>
+{%endfor%}
+{% endif %}
+  
         <div class="content container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="w-100 p-3">
+
+
+<br><br>
                     {% block content %}
                     {% endblock %}
                 </div>
             </div>
+
         </div>
+<br>
+<br>
+<br>
+<br>
     </body>
 </html>

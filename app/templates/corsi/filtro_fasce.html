@@ -1,9 +1,41 @@
 {% extends 'corsi/base.html' %}
 
 {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-4">
 
-<form method="GET" action=""> {{ form.q }}<input type="submit" value="Search"> <a href="/">indietro</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+<h3>Per effettuare la ricerca di un corso pigiare la combinazione di tasti [ctrl+f], se hai un pc apple  usa [cmd+f]</h3>
+<script>
+function Search()
+{
+txt = document.getElementById("data").value;
+document.getElementById("data").value = "";
+if(!self.find(txt) && txt != '')
+alert('Data non trovata');
+}
+</script>
   <p>numero corsi tot: {{corsi.count}}</p>
+  {%if fascia == "f1"%} <h3>Martedì 3-4 ora</h3> 
+  {%elif fascia == "f2"%} <h3>Martedì 5-6</h3>
+  {%elif fascia == "f3"%} <h3>Mercoledì 3-4</h3>
+  {%elif fascia == "f4"%} <h3>Mercoledì 5-6</h3>
+  {%elif fascia == "f5"%} <h3>Giovedì 3-4</h3>
+  {%elif fascia == "f6"%} <h3>Giovedì 5-6</h3>
+  {%elif fascia == "f7"%} <h3>Venerdì 3-4</h3>
+  {%elif fascia == "f8"%} <h3>Venerdì 5-6</h3>
+  {%elif fascia == "f9"%} <h3>Venerdì 1-2</h3>
+
+
+  {%endif%}
+
 </form>
 
 
@@ -13,19 +45,65 @@
 
 
 {% csrf_token %}
-        <div class="card">
+<div id=box>
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <div class="card"  >
+
   <div class="card-header">
-  corso
+  <h4 class="card-title">{{ corso.titolo }}</h4>
   </div>
   <div class="card-body">
-    <h4 class="card-title">{{ corso.titolo }}</h4>
+
 
   <h10>{{ corso.studenti_referenti }}</h10>
-  <p>{{corso.id}} </p>
-  <p>{{iscrizioni.count}}<p>
+  <p>Esperti esterni: {{corso.esperti_esterni}}<p>
   {%if corso.progressivo == True%} <p>progressivo</p>
+  <div class="col-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+      <th scope="col">#</th>
+      <th scope="col">Martedì</th>
+      <th scope="col">Mercoledì</th>
+      <th scope="col">Giovedì</th>
+      <th scope="col">Venerdì</th>
+    </tr>
+
+    </thead>
+
+      <tr> <th scope="row">1.</th> <td><img src="/static/libro.png"class="icone">  </td><td><img src="/static/libro.png"class="icone">  </td><td><img src="/static/libro.png"class="icone">  </td></td>
+  <td>{%if corso.f9 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.8 == True and iscrizione.corso9_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</tr>
+      <tr> <th scope="row">2.</th>
+
+  <td>{%if corso.f1 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.0 == True and iscrizione.corso1_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</td>
+  <td>{%if corso.f3 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.2 == True and iscrizione.corso3_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</td>
+  <td>{%if corso.f5 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.4 == True and iscrizione.corso5_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</td>
+  <td>{%if corso.f7 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.6 == True and iscrizione.corso7_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</td>
+      </tr>
+      <tr> <th scope="row">3.</th>
+  <td>{%if corso.f2 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.1 == True and iscrizione.corso2_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</td>
+  <td>{%if corso.f4 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.3 == True and iscrizione.corso4_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</td>
+  <td>{%if corso.f6 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.5 == True and iscrizione.corso6_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</td>
+  <td>{%if corso.f8 == False%}<img class="icone" src="/static/x.svg" alt="-">{%elif tabellagrafica.7 == True and iscrizione.corso8_id != Null%}<img class="icone" src="/static/pallino_rosso.svg">{%else%}<img class="icone" src="/static/pallino_verde.svg">{%endif%}</td>
+      </tr>
+
+  </table>
+
+</div>
   {%elif corso.progressivo == False%}<p>singolo</p>
+    {%if fascia == "f1"%} <h5>Martedì 3-4 ora</h5>
+  {%elif fascia == "f2"%} <h5>Martedì 5-6</h5>
+  {%elif fascia == "f3"%} <h5>Mercoledì 3-4</h5>
+  {%elif fascia == "f4"%} <h5>Mercoledì 5-6</h5>
+  {%elif fascia == "f5"%} <h5>Giovedì 3-4</h5>
+  {%elif fascia == "f6"%} <h5>Giovedì 5-6</h5>
+  {%elif fascia == "f7"%} <h5>Venerdì 3-4</h5>
+  {%elif fascia == "f8"%} <h5>Venerdì 5-6</h5>
+  {%elif fascia == "f9"%} <h5>Venerdì 1-2</h5>
   {%endif%}
+{%endif%}
 
     <form method="POST" class="post-form"  action="{%url 'edit_iscrizioni' corso.id  %}?f={{fascia}}">
   {% csrf_token %}
@@ -36,6 +114,15 @@
   </div>
 </div>
 <br>
+</div>
+<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+
     {% endfor %}
+
 
 {% endblock content %}

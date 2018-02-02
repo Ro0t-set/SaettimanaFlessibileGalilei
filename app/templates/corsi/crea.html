@@ -4,9 +4,29 @@
     <h1>Crea Corsi</h1>
 <form method="POST" >
 <div class="form-row">
-<div class="col-sm-10 col-form-label">
+<div class="col">
+<br>
+<br>
+<iframe width="448" height="252" src="https://www.youtube.com/embed/kPAP_zQUEbg?rel=0" frameborder="0" allowfullscreen></iframe>
+<br>
+<br>
+<p>Per mancanza di corsi il sito rimarrà aperto fino al <b>19 dicembre</b>!</p>
+<h2>Importante</h2>
+<p>Un CORSO PROGRESSIVO segue una linea graduale ed è dunque necessario assistere a più sedute in più giorni per portarlo a termine.
+Qualora si voglia presentare un corso progressivo da ripetersi per più di un unico ciclo, è necessario ripetere daccapo la procedura di iscrizione</p>
+<br>
+<b>* Se si richiedono esperti esterni è necessario inviare il loro curriculum alla seguente mail: settimanaflessibile@gmail.com
+(N.B. mettere come oggetto il nome del relativo corso + CURRICULUM)</b>
+<br>
+<br>
+<b>Poichè il sito è online da poco è molto probabile che si verifichino degli errori... Se ciò accadesse è importante che copiate il testo dell'errore (il testo si presenta in grassetto in cima ad una pagina gialla) e che lo inviate nella sezione Help</b>
+</div>
+<div class="col-1">
+</div>
+<div class="col">
               {% csrf_token %}
-
+<br>
+<br>	
 
               <p>Titolo corso:{{form.titolo}}</p>
               <br>
@@ -16,6 +36,7 @@
               <br>
               <p>Descrizione Corso:{{form.descrizione}}</p>
               <br>
+	      <p>Esperti esterni (facoltativo):{{form.esperti_esterni}}</p>
               <p>Aula:{{form.aule}}</p>
               <br>
               <p>Progressivo?{{form.progressivo}}</p>
@@ -33,7 +54,8 @@
 
         </thead>
 
-          <tr> <th scope="row">1.</th> <td>Lezione </td><td>Lezione </td><td>Lezione </td></td><td>Lezione </tr>
+          <tr> <th scope="row">1.</th> <td><img src="/static/libro.png"class="icone">  </td><td><img src="/static/libro.png"class="icone">  </td><td><img src="/static/libro.png"class="icone">  </td></td>
+		<td>{{form.f9}} </tr>
           <tr> <th scope="row">2.</th>
           <td> {{form.f1}}</td>
           <td> {{form.f3}}</td>
@@ -41,19 +63,15 @@
           <td> {{form.f7}}</td>
           </tr>
           <tr> <th scope="row">3.</th>
-          <td> {{form.f2}}</td>
-          <td>{{form.f4}} </td>
-          <td> {{form.f6}}</td>
+          <td>{{form.f2}}</td>
+          <td>{{form.f4}}</td>
+          <td>{{form.f6}}</td>
           <td> {{form.f8}}</td>
           </tr>
 
           </table>
           <button type="submit" class="save btn btn-primary">Save</button>
             </div>
-
-
-
-
 
 
 

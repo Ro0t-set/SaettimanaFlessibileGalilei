@@ -1,14 +1,24 @@
 {% extends 'corsi/base.html' %}
-
 {% block content %}
-
 
     {% for iscrizione in iscrizioni%}
 
-    <div class="panel panel-default">
 
-      <div class="panel-heading">
-<p><b>{{user}}</b></p>
+<div class="card">
+ <div class="card-body">
+<b><h3 style="color:red;">ATTENZIONE</h3>I corsi  cambieranno in base alla fascia che selezionerete, non è presente una lista con tutti i corsi proposti.</b>
+<br>
+<br>
+<b><h5 style="color:red;">N.B.</h5>-Alcuni referenti avevano due corsi sovrapposti, quindi sono stati iscrtti ad uno dei due, per qualsiasi problema o dubbio andate nella sezione <a href="/help">Help</a></b>
+<br>
+<br>
+<b>-Evenuali modifiche ai corsi verranno segnalate nella sezione <a href="/">Home</a></b>
+</div>
+</div>
+
+<br>
+<br>
+<p><b>{{user}}, la posibilità di eliminarsi da un corso è stata tolta, hai ancora la possibiltà di iscrizione per qualche ora dopo di che le fasce vuote verranno colmate da un algorittmo automatico che le inserità automaticamene</b></p>
   </div>
 
       <table class="table table-striped">
@@ -23,18 +33,19 @@
 
 </thead>
 
-  <tr> <th scope="row">1.</th> <td>Lezione </td><td>Lezione </td><td>Lezione </td></td><td>Lezione </tr>
+  <tr> <th scope="row">1.</th> <td><img src="/static/libro.png" class="icone"> </td><td><img src="/static/libro.png" class="icone"> </td><td><img src="/static/libro.png"class="icone"> </td></td>
+<td>{% if iscrizione.corso9 == None %}<a href="/filtro_fasce/?f=f9"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso9}}{% endif %} </td>
   <tr> <th scope="row">2.</th>
-  <td>{% if iscrizione.corso1 == None %}<img class="icone" src="/static/x.svg" alt="modifica">  <a href="/filtro_fasce/?f=f1"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso1}} <a href="{% url 'elimina' iscrizione.corso1.id  %}?f=f1"><img class="icone" src="/static/cestino.svg" alt="elimina"><a/>{% endif %} </td>
-  <td>{% if iscrizione.corso3 == None %}<img class="icone" src="/static/x.svg" alt="modifica">  <a href="/filtro_fasce/?f=f3"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso3}} <a href="{% url 'elimina' iscrizione.corso3.id  %}?f=f3"><img class="icone" src="/static/cestino.svg" alt="elimina"><a/>{% endif %} </td>
-  <td>{% if iscrizione.corso5 == None %}<img class="icone" src="/static/x.svg" alt="modifica">  <a href="/filtro_fasce/?f=f5"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso5}} <a href="{% url 'elimina' iscrizione.corso5.id  %}?f=f5"><img class="icone" src="/static/cestino.svg" alt="elimina"><a/>{% endif %} </td>
-  <td>{% if iscrizione.corso7 == None %}<img class="icone" src="/static/x.svg" alt="modifica">  <a href="/filtro_fasce/?f=f7"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso7}} <a href="{% url 'elimina' iscrizione.corso7.id  %}?f=f7"><img class="icone" src="/static/cestino.svg" alt="elimina"><a/>{% endif %} </td>
+  <td>{% if iscrizione.corso1 == None %}<a href="/filtro_fasce/?f=f1"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso1}}{% endif %} </td>
+  <td>{% if iscrizione.corso3 == None %}<a href="/filtro_fasce/?f=f3"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso3}}{% endif %} </td>
+  <td>{% if iscrizione.corso5 == None %}<a href="/filtro_fasce/?f=f5"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso5}}{% endif %} </td>
+  <td>{% if iscrizione.corso7 == None %}<a href="/filtro_fasce/?f=f7"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso7}}{% endif %} </td>
   </tr>
   <tr> <th scope="row">3.</th>
-  <td>{% if iscrizione.corso2 == None %}<img class="icone" src="/static/x.svg" alt="modifica">  <a href="/filtro_fasce/?f=f2"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso2}} <a href="{% url 'elimina' iscrizione.corso2.id  %}?f=f2"><img class="icone" src="/static/cestino.svg" alt="elimina"><a/>{% endif %} </td>
-  <td>{% if iscrizione.corso4 == None %}<img class="icone" src="/static/x.svg" alt="modifica">  <a href="/filtro_fasce/?f=f4"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso4}} <a href="{% url 'elimina' iscrizione.corso4.id  %}?f=f4"><img class="icone" src="/static/cestino.svg" alt="elimina"><a/>{% endif %} </td>
-  <td>{% if iscrizione.corso6 == None %}<img class="icone" src="/static/x.svg" alt="modifica">  <a href="/filtro_fasce/?f=f6"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso6}} <a href="{% url 'elimina' iscrizione.corso6.id  %}?f=f6"><img class="icone" src="/static/cestino.svg" alt="elimina"><a/>{% endif %} </td>
-  <td>{% if iscrizione.corso8 == None %}<img class="icone" src="/static/x.svg" alt="modifica">  <a href="/filtro_fasce/?f=f8"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso8}} <a href="{% url 'elimina' iscrizione.corso8.id  %}?f=f8"><img class="icone" src="/static/cestino.svg" alt="elimina"><a/>{% endif %} </td>
+  <td>{% if iscrizione.corso2 == None %}<a href="/filtro_fasce/?f=f2"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso2}}{% endif %} </td>
+  <td>{% if iscrizione.corso4 == None %}<a href="/filtro_fasce/?f=f4"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso4}}{% endif %} </td>
+  <td>{% if iscrizione.corso6 == None %}<a href="/filtro_fasce/?f=f6"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso6}}{% endif %} </td>
+  <td>{% if iscrizione.corso8 == None %}<a href="/filtro_fasce/?f=f8"><img class="icone" src="/static/modifica.svg" alt="modifica"><a/>{% else %}{{iscrizione.corso8}}{% endif %} </td>
   </tr>
 
   </table>
